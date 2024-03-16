@@ -1,5 +1,6 @@
 package bookstore;
 
+import annotations.Vavr_Either;
 import annotations.Vavr_Option;
 import io.vavr.control.Either;
 import io.vavr.control.Option;
@@ -11,6 +12,7 @@ import bookstore.warehouse.data.WarehouseBookISBN;
 import java.math.BigDecimal;
 
 @Vavr_Option
+@Vavr_Either
 public class BookCustomerOfferService implements FindBook {
 
     public static final String DUMMY_OFFER_NUMBER = "9999";

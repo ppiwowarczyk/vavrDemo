@@ -18,10 +18,10 @@ There is also annotations refers to particular functionalities for examples :
 Classes where those part of `vavr` are used are annotated so can be easily track in project. 
 
 ## Option
-We are using `Option` as return element for books but also using `fold` to process results 
+We are using `Option` as return element for books but also using `fold` to process results. 
 
 ## Either
-We are using `Either` during communication with external warehouse system as we can get Option of book from warehouse or some error with warehave access.
+We are using `Either` during communication with external warehouse system as we can get `Option` of book from warehouse or some error with warehouse access.
 
 ## Lazy
 TODO
