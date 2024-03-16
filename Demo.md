@@ -1,6 +1,7 @@
 # Intro
 
-In this article, we are going to explore exactly what Vavr is, why we need it and how to use it in our projects.
+In this article, we are going to explore exactly what `vavr` is, why we need it and how to use it in our projects.
+We wil be using fake application where we used `vavr` to show more less real live examples of usadge in real code. 
 
 # What is vavr
 
@@ -14,13 +15,19 @@ There is also annotations refers to particular functionalities for examples :
 @Vavr_Either
 ````
 
-## Option
+Classes where those part of `vavr` are used are annotated so can be easily track in project. 
 
+## Option
 We are using `Option` as return element for books but also using `fold` to process results 
 
 ## Either
-
 We are using `Either` during communication with external warehouse system as we can get Option of book from warehouse or some error with warehave access.
+
+## Lazy
+TODO
+
+## Try
+TODO
 
 # Materials 
 
