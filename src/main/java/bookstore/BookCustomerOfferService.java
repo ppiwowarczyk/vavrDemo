@@ -1,8 +1,10 @@
 package bookstore;
 
 import annotations.Vavr_Either;
+import annotations.Vavr_Lazy;
 import annotations.Vavr_Option;
 import bookstore.warehouse.WarehouseApi;
+import io.vavr.Lazy;
 import io.vavr.control.Either;
 import io.vavr.control.Option;
 import bookstore.warehouse.data.WarehouseServiceError;
@@ -13,6 +15,7 @@ import java.math.BigDecimal;
 
 @Vavr_Option
 @Vavr_Either
+@Vavr_Lazy
 public class BookCustomerOfferService implements FindBook {
 
     public static final String DUMMY_OFFER_NUMBER = "9999";
@@ -44,17 +47,18 @@ public class BookCustomerOfferService implements FindBook {
                     new BigDecimal("100.00")
             ));    
         } else {
-           return provideSomePromoOfferInCaseOfStockIsDown();
+            Lazy<Option<BookOffer>> lazy = provideSomePromoOfferInCaseOfStockIsDown();
+            return lazy.get();
         }
     }
 
-    private Option<BookOffer> provideSomePromoOfferInCaseOfStockIsDown() {
+    private Lazy<Option<BookOffer>> provideSomePromoOfferInCaseOfStockIsDown() {
 
-        return Option.of( new BookOffer(
+        return Lazy.of(() -> Option.of( new BookOffer(
             new WarehouseBookISBN(DUMMY_OFFER_NUMBER),
                 DUMMY_OFFER_TITLE,
                 DUMMY_OFFER_AUTHOR,
-            new BigDecimal("10.00")
+            new BigDecimal("10.00"))
         ));
     }
 }
