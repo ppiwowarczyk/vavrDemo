@@ -13,6 +13,7 @@ There is also annotations refers to particular functionalities for examples :
 ````
 @Vavr_Option
 @Vavr_Either
+@Vavr_Try
 ````
 
 Classes where those part of `vavr` are used are annotated so can be easily track in project.
@@ -23,10 +24,10 @@ We are using `Option` as return element for books but also using `fold` to proce
 ## Either
 We are using `Either` during communication with external warehouse system as we can get `Option` of book from warehouse or some error with warehouse access.
 
-## Lazy
-TODO
-
 ## Try
+While communicating with external warehouse system we are using `Try` to handle in functional way exception handling for external service communication. 
+
+## Lazy
 TODO
 
 # Materials

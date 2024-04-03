@@ -1,15 +1,16 @@
 package bookstore;
 
 import annotations.Vavr_Option;
+import bookstore.warehouse.external.ExternalRestServiceWarehouse;
 import io.vavr.control.Option;
-import bookstore.warehouse.WarehouseClientMock;
+import bookstore.warehouse.WarehouseClient;
 import bookstore.warehouse.data.WarehouseBookISBN;
 import org.junit.Test;
 
 import java.util.Optional;
 
 import static bookstore.BookCustomerOfferService.DUMMY_OFFER_TITLE;
-import static bookstore.warehouse.WarehouseClientMock.CRASHING_APP_ISDN;
+import static bookstore.warehouse.external.ExternalRestServiceWarehouse.CRASHING_APP_ISDN;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class BookCustomerTest
@@ -19,7 +20,7 @@ public class BookCustomerTest
     public void shouldReturnBookOffer()
     {
         // given
-        FindBook bookFind = new BookCustomerOfferService(new WarehouseClientMock());
+        FindBook bookFind = new BookCustomerOfferService(new WarehouseClient(new ExternalRestServiceWarehouse()));
 
         // when
         Option<BookOffer> bookDetailWithVavrOption = bookFind.findBookDetails(new WarehouseBookISBN("1234"));
@@ -34,7 +35,7 @@ public class BookCustomerTest
     public void shouldReturnPromoOfferInCaseOfWarehouseCrash() {
 
         // given
-        FindBook bookFind = new BookCustomerOfferService(new WarehouseClientMock());
+        FindBook bookFind = new BookCustomerOfferService(new WarehouseClient(new ExternalRestServiceWarehouse()));
 
         // when
         Option<BookOffer> bookDetailWithVavrOption = bookFind.findBookDetails(new WarehouseBookISBN(CRASHING_APP_ISDN));

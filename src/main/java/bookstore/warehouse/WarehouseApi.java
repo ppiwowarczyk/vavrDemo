@@ -6,5 +6,5 @@ import io.vavr.control.Either;
 
 public interface WarehouseApi {
 
-    Either<WarehouseBook, WarehouseServiceError> callForBookData(String number);
+    Either<WarehouseServiceError, WarehouseBook> callForBookData(String number);
 }
