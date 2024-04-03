@@ -36,11 +36,11 @@ public class BookCustomerOfferService implements FindBook {
     private Option<BookOffer> handleResult(Either<WarehouseServiceError, WarehouseBook> callResult) {
 
         if (callResult.isRight()) {
-            WarehouseBook left = callResult.get();
+            WarehouseBook right = callResult.get();
             return Option.of(new BookOffer(
-                    left.isbn(),
-                    left.title(),
-                    left.author(),
+                    right.isbn(),
+                    right.title(),
+                    right.author(),
                     new BigDecimal("100.00")
             ));    
         } else {
