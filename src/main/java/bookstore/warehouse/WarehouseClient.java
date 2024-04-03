@@ -3,7 +3,6 @@ package bookstore.warehouse;
 import annotations.Vavr_Either;
 import annotations.Vavr_Try;
 import bookstore.warehouse.data.WarehouseBook;
-import bookstore.warehouse.data.WarehouseBookISBN;
 import bookstore.warehouse.data.WarehouseServiceError;
 import bookstore.warehouse.external.ExternalRestServiceWarehouse;
 import io.vavr.control.Either;
@@ -31,14 +30,14 @@ public class WarehouseClient implements WarehouseApi {
                 .toEither();
 
         if (result.isLeft()) {
-            return Either.left(provideClientError());
+            return Either.left(provideClientError(result.getLeft()));
         }
         else {
             return Either.right(result.get());
         }
     }
 
-    private WarehouseServiceError provideClientError() {
-        return new WarehouseServiceError("Unable to connect to system");
+    private WarehouseServiceError provideClientError(Throwable throwable) {
+        return new WarehouseServiceError("Unable to connect to system details are " + throwable.getMessage());
     }
 }
